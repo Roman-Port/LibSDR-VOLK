@@ -134,7 +134,7 @@ if (VOLK_CPU_FEATURES)
   add_subdirectory(cpu_features)
   set(BUILD_SHARED_LIBS "${BUILD_SHARED_LIBS_SAVED}")
 else()
-  message(STATUS "Building Volk without cpu_features")
+  message(STATUS "Building Volk without cpu_features (CPU is ${CMAKE_SYSTEM_PROCESSOR})")
 endif()
 
 # Python
@@ -169,18 +169,18 @@ endif(MSVC)
 find_package(FILESYSTEM COMPONENTS Final Experimental)
 
 #### Set C++ standard to 17 if std::filesystem is available
-if(${FILESYSTEM_FOUND})
-    set(CMAKE_CXX_STANDARD 17)
-    set(CMAKE_CXX_EXTENSIONS OFF)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
-    set(Boost_LIBRARIES "")
-    set(Boost_INCLUDE_DIRS "")
-else()
-    include(VolkBoost)
-    if(NOT Boost_FOUND)
-        message(FATAL_ERROR "VOLK Requires boost to build")
-    endif()
-endif()
+#if(${FILESYSTEM_FOUND})
+#    set(CMAKE_CXX_STANDARD 17)
+#    set(CMAKE_CXX_EXTENSIONS OFF)
+#    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#    set(Boost_LIBRARIES "")
+#    set(Boost_INCLUDE_DIRS "")
+#else()
+#    include(VolkBoost)
+#    if(NOT Boost_FOUND)
+#        message(FATAL_ERROR "VOLK Requires boost to build")
+#    endif()
+#endif()
 
 ########################################################################
 # check for aligned_alloc, since some compilers lack this C11 feature.
@@ -358,9 +358,10 @@ install(EXPORT VOLK-export FILE VolkTargets.cmake
 ########################################################################
 # Option to enable QA testing, on by default
 ########################################################################
+# (this should be disabled)
 OPTION(ENABLE_TESTING "Enable QA testing" ON)
 if(ENABLE_TESTING)
-  message(STATUS "QA Testing is enabled.")
+  message(ERROR "QA Testing is enabled. THIS WILL LIKELY CAUSE ISSUES!")
 else()
   message(STATUS "QA Testing is disabled.")
 endif()
@@ -395,15 +396,6 @@ message(STATUS "  Modify using: -DENABLE_PROFILING=ON/OFF")
 # Setup the library
 ########################################################################
 add_subdirectory(lib)
-
-########################################################################
-# And the utility apps
-########################################################################
-add_subdirectory(apps)
-option(ENABLE_MODTOOL "Enable volk_modtool python utility" True)
-if(ENABLE_MODTOOL)
-  add_subdirectory(python/volk_modtool)
-endif()
 
 ########################################################################
 # Print summary

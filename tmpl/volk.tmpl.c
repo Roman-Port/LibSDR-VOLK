@@ -181,6 +181,13 @@ ${kern.pname} ${kern.name}_a = &__${kern.name}_a;
 ${kern.pname} ${kern.name}_u = &__${kern.name}_u;
 ${kern.pname} ${kern.name}   = &__${kern.name};
 
+//BUG:  Using DllImport in CSharp will fail and cause a memory violation error as a result of this weirdness of swapping around where functions point to.
+//      As a workaround, I added this function here which just acts as a bypass. Don't know why it solves the problem...
+
+void ${kern.name}_compat(${kern.arglist_full}) {
+    ${kern.name}(${kern.arglist_names});
+}
+
 void ${kern.name}_manual(${kern.arglist_full}, const char* impl_name)
 {
     const int index = volk_get_index(

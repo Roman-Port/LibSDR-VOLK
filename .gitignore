@@ -3,3 +3,8 @@
 *.pyo
 *build*/
 archives/
+
+.vs/
+libsdr/android-ndk*
+libsdr/bin/
+libsdr/build/

@@ -84,10 +84,11 @@ endif(HAVE_POSIX_MEMALIGN)
 ########################################################################
 # detect x86 flavor of CPU
 ########################################################################
-if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "^(i.86|x86|x86_64|amd64|AMD64)$")
-    message(STATUS "x86* CPU detected")
-    set(CPU_IS_x86 TRUE)
-endif()
+#if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "^(i.86|x86|x86_64|amd64|AMD64)$")
+#    message(STATUS "x86* CPU detected")
+#    set(CPU_IS_x86 TRUE)
+#endif()
+set(CPU_IS_x86 TRUE)
 
 ########################################################################
 # determine passing architectures based on compile flag tests
@@ -207,6 +208,10 @@ if(NOT CPU_IS_x86)
     OVERRULE_ARCH(avx512f "Architecture is not x86 or x86_64")
     OVERRULE_ARCH(avx512cd "Architecture is not x86 or x86_64")
 endif(NOT CPU_IS_x86)
+
+# added by LibSDR - The following cause problems
+OVERRULE_ARCH(avx512f "Disabled by LibSDR, as it causes problems")
+OVERRULE_ARCH(avx512cd "Disabled by LibSDR, as it causes problems")
 
 ########################################################################
 # Select neon based on ARM ISA version
@@ -483,6 +488,7 @@ list(APPEND volk_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/volk_prefs.c
     ${CMAKE_CURRENT_SOURCE_DIR}/volk_rank_archs.c
     ${CMAKE_CURRENT_SOURCE_DIR}/volk_malloc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../libsdr/src/libsdr.c #added for LibSDR
     ${volk_gen_sources}
 )
 

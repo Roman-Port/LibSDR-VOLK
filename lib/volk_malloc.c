@@ -69,6 +69,8 @@ void* volk_malloc(size_t size, size_t alignment)
     }
 #elif defined(_MSC_VER)
     void* ptr = _aligned_malloc(size, alignment);
+#elif defined(__MINGW32__)
+    void* ptr = _aligned_malloc(size, alignment);
 #else
     void* ptr = aligned_alloc(alignment, size);
 #endif
