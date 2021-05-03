@@ -1,9 +1,7 @@
 #include <volk/volk_common.h>
 #include <volk/volk_complex.h>
 
-VOLK_API inline int libsdr_version() {
-    return 2;
-}
+VOLK_API int libsdr_version();
 
 #pragma region libsdr_filter_real
 

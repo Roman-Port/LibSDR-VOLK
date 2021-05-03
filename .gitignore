@@ -8,3 +8,4 @@ archives/
 libsdr/android-ndk*
 libsdr/bin/
 libsdr/build/
+libsdr/build_*

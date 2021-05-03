@@ -3,6 +3,10 @@
 #include <volk/volk_malloc.h>
 #include <volk/volk.h>
 
+int libsdr_version() {
+    return 2;
+}
+
 #pragma region libsdr_filter_real
 
 libsdr_filter_real_data* libsdr_filter_real_create(int taps, int decimation)
