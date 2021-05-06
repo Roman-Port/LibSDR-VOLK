@@ -36,7 +36,7 @@ cfgvolk_android () {
         #       $1: Arch
 
         cwd=$(pwd)
-        cfgvolk "android" $1 "-DCMAKE_TOOLCHAIN_FILE=$cwd/android-ndk-r21e/build/cmake/android.toolchain.cmake -DANDROID_ABI=$1 -DANDROID_NATIVE_API_LEVEL=23 -DANDROID_ARM_NEON=ON -DENABLE_STATIC_LIBS=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.6m -DENABLE_STATIC_LIBS=True -DENABLE_TESTING=OFF" "so"
+        cfgvolk "android" $1 "-DCMAKE_TOOLCHAIN_FILE=$cwd/android-ndk-r21e/build/cmake/android.toolchain.cmake -DANDROID_ABI=$1 -DANDROID_NATIVE_API_LEVEL=23 -DANDROID_ARM_NEON=ON -DENABLE_STATIC_LIBS=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 -DENABLE_STATIC_LIBS=True -DENABLE_TESTING=OFF" "so"
 }
 
 cfgvolk_win () {
