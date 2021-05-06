@@ -1,6 +1,6 @@
 # Download the required dependencies
 sudo apt update
-sudo apt install build-essential cmake python3.8 python3-pip mingw-w64 mingw-w64-common -y
+sudo apt install build-essential cmake python3.8 python3-pip mingw-w64 mingw-w64-common zip -y
 
 # Download mako
 pip3 install mako
