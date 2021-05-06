@@ -7,7 +7,7 @@ VOLK for LibSDR is a modifed, "trim the fat" version of VOLK designed for LibSDR
 To build, clone recursively:
 
 ```
-git clone --recursive https://github.com/gnuradio/volk.git
+git clone --recursive https://github.com/Roman-Port/LibSDR-VOLK
 ```
 
 Then, navigate into the ``libsdr`` folder and run the first-time setup script ``setup.sh``. You'll only have to do this once:
